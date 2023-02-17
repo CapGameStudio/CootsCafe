@@ -5,5 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Eat", menuName = "ScriptableObjects/Eat", order = 1)]
 public class EatObject : ScriptableObject
 {
-    public float time;
+    public string nickname;
+    public GameObject obj;
+    public float deltime;
+    public float time; //timetofinish
+    public float eattime;
 }
