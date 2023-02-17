@@ -10,7 +10,7 @@ public class GridToBanch : MonoBehaviour
     public GameObject FinishedBenchPlace;
 
     [SerializeField]
-    private string InteractibleObj;
+    private List<string> InteractibleObj;
 
     public float TimeTillFinish;
 
@@ -18,29 +18,41 @@ public class GridToBanch : MonoBehaviour
 
     public TextMeshProUGUI TimerText;
 
+    public bool isAlreadyworking;
+
     void Start()
     {
-        TimerText.text = "";
+        if(TimerText != null)
+        {
+            TimerText.text = " ";
+        }
     }
 
     public void OnTriggerEnter(Collider other)
     {
+        for(int i = 0; i < InteractibleObj.Count; i++)
+        {
             //Objekt zum Interagieren ist auf z.b auf Waschbecken
-            if (other.name == other.GetComponent<DragSystem>().ObjectNames && other.GetComponent<DragSystem>().ObjectNames == InteractibleObj)
+            if (other.name == other.GetComponent<DragSystem>().ObjectNames && other.GetComponent<DragSystem>().ObjectNames == InteractibleObj[i] && isAlreadyworking == false)
             {
                 //z.b. Dann Teller Waschen
+                isAlreadyworking = true;
                 other.gameObject.GetComponent<DragSystem>().Allowed = false;
                 other.transform.position = Bench.transform.position;
                 IntercatingObject = other.gameObject;
-                TimeTillFinish = IntercatingObject.GetComponent<DragSystem>().Cooldown;
+                if(TimerText != null)
+                {
+                    TimeTillFinish = IntercatingObject.GetComponent<DragSystem>().Cooldown;
+                }
                 StartCoroutine(CoolDownCounter(IntercatingObject.GetComponent<DragSystem>().Cooldown));
             }
+        }
     }
 
 
     public void Update()
     {
-        if(TimeTillFinish >= 0)
+        if(TimeTillFinish > 0)
         {
             TimeTillFinish -= Time.deltaTime;
             float x = Mathf.Round(TimeTillFinish * 10f) / 10f;
@@ -50,8 +62,6 @@ public class GridToBanch : MonoBehaviour
 
     public virtual IEnumerator CoolDownCounter(float f)
     {
-        yield return new WaitForSecondsRealtime(0.01f);
-        TimeTillFinish = f;
         yield return new WaitForSecondsRealtime(f);
         UseBench();
     }
@@ -63,5 +73,6 @@ public class GridToBanch : MonoBehaviour
         IntercatingObject.transform.position = FinishedBenchPlace.transform.position;
         IntercatingObject.GetComponent<DragSystem>().Allowed = true;
         TimerText.text = null;
+        isAlreadyworking = false;
     }
 }
