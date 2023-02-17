@@ -6,15 +6,15 @@ public class Frezzer : GridToBanch
 {
     public override void UseBench()
     {
-        IntercatingObject.GetComponent<DragSystem>().inFrezzer = true;
+        InteractObject.GetComponent<DragSystem>().inFrezzer = true;
     }
 
     public override IEnumerator CoolDownCounter(float f)
     {
         UseBench();
         yield return new WaitForSecondsRealtime(3f);
-        IntercatingObject.GetComponent<DragSystem>().Allowed = true;
+        InteractObject.GetComponent<DragSystem>().Allowed = true;
         isAlreadyworking = false;
-        IntercatingObject = null;
+        InteractObject = null;
     }
 }

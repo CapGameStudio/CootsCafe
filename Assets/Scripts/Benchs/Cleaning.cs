@@ -7,9 +7,9 @@ public class Cleaning : GridToBanch
     public override void UseBench()
     {
         base.UseBench();
-        IntercatingObject.GetComponent<DragSystem>().ObjectNames = "Wasched";
-        IntercatingObject.name = "Wasched";
-        IntercatingObject = null;
+        InteractObject.GetComponent<DragSystem>().ObjectNames = "Wasched";
+        InteractObject.name = "Wasched";
+        InteractObject = null;
     }
 
     public override IEnumerator CoolDownCounter(float f)

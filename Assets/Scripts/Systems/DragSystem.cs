@@ -9,22 +9,20 @@ public class DragSystem : MonoBehaviour
 
     public RaycastHit hit;
 
-    public bool Allowed;
+    public bool Allowed, inFrezzer;
+    private float time;
 
-    public string ObjectNames;
+    public EatObject eatObject;
 
-    public float Cooldown;
-
-    public float TimeTillDecay;
+    //public string ObjectNames;
+    //public float TimeTillDecay;
 
     public TextMeshProUGUI DecayTime;
-
-    public bool inFrezzer;
 
     private void Start()
     {
         DecayTime.text = " ";
-
+        time = eatObject.deltime;
     }
 
     void OnMouseDrag()
@@ -32,7 +30,7 @@ public class DragSystem : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit, 1000))
         {
-                if(hit.transform.name != ObjectNames && Allowed)
+                if(hit.transform.name != eatObject.nickname && Allowed)
                 {
                     if (inFrezzer)
                     {
@@ -50,10 +48,10 @@ public class DragSystem : MonoBehaviour
     private void Update()
     {
         //Vorhanden
-        if(TimeTillDecay > 0 && !inFrezzer)
+        if(time > 0 && !inFrezzer)
         {
-            TimeTillDecay -= Time.deltaTime;
-            float x = Mathf.Round(TimeTillDecay * 10f) / 10f;
+            time -= Time.deltaTime;
+            float x = Mathf.Round(time * 10f) / 10f;
             DecayTime.text = x.ToString();
         }
     }

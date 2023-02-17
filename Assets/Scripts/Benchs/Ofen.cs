@@ -8,10 +8,10 @@ public class Ofen : GridToBanch
    public override void UseBench()
     {
         base.UseBench();
-        IntercatingObject.GetComponent<MeshRenderer>().material = BackedColor;
-        IntercatingObject.GetComponent<DragSystem>().ObjectNames = "Baked-" + IntercatingObject.GetComponent<DragSystem>().ObjectNames;
-        IntercatingObject.name = IntercatingObject.GetComponent<DragSystem>().ObjectNames;
-        IntercatingObject = null;
+        InteractObject.GetComponent<MeshRenderer>().material = BackedColor;
+        InteractObject.GetComponent<DragSystem>().ObjectNames = "Baked-" + InteractObject.GetComponent<DragSystem>().ObjectNames;
+        InteractObject.name = InteractObject.GetComponent<DragSystem>().ObjectNames;
+        InteractObject = null;
     }
 
     public override IEnumerator CoolDownCounter(float f)

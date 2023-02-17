@@ -5,46 +5,56 @@ using TMPro;
 
 public class GridToBanch : MonoBehaviour
 {
-    public GameObject Bench;
-
-    public GameObject FinishedBenchPlace;
+    public int itemAmount = 1; //itme Amount
 
     [SerializeField]
-    private List<string> InteractibleObj;
+    private List<EatObject> ItemObj;
+    public List<Transform> StorePlace, FinishedPlace;
+    public List<GameObject> InteractObject;
 
-    public float TimeTillFinish;
-
-    public GameObject IntercatingObject;
-
+    public float time, workingTime;
+    public bool isAlreadyworking; //später auf Private
     public TextMeshProUGUI TimerText;
 
-    public bool isAlreadyworking;
+    #if UNITY_EDITOR
+
+    private void OnGUI()
+    {
+        InteractObject = new List<GameObject>(itemAmount);
+        StorePlace = new List<Transform>(itemAmount);
+        FinishedPlace = new List<Transform>(itemAmount);
+    }
+    #endif
 
     void Start()
     {
         if(TimerText != null)
-        {
             TimerText.text = " ";
-        }
     }
 
     public void OnTriggerEnter(Collider other)
     {
-        for(int i = 0; i < InteractibleObj.Count; i++)
+        for(int i = 0; i < ItemObj.Count; i++)
         {
             //Objekt zum Interagieren ist auf z.b auf Waschbecken
-            if (other.name == other.GetComponent<DragSystem>().ObjectNames && other.GetComponent<DragSystem>().ObjectNames == InteractibleObj[i] && isAlreadyworking == false)
+            if (other.GetComponent<DragSystem>().eatObject == ItemObj[i])
             {
-                //z.b. Dann Teller Waschen
-                isAlreadyworking = true;
-                other.gameObject.GetComponent<DragSystem>().Allowed = false;
-                other.transform.position = Bench.transform.position;
-                IntercatingObject = other.gameObject;
-                if(TimerText != null)
+                for (int j = 0; j < itemAmount; j++)
                 {
-                    TimeTillFinish = IntercatingObject.GetComponent<DragSystem>().Cooldown;
+                    if (isAlreadyworking == false && ItemObj[i])
+                    {
+                        //z.b. Dann Teller Waschen
+                        other.gameObject.GetComponent<DragSystem>().Allowed = false;
+                        other.transform.position = StorePlace[j].position;
+                        InteractObject[j] = other.gameObject;
+                        if (InteractObject[itemAmount - 1])
+                        {
+                            time = workingTime;
+                            isAlreadyworking = true;
+                            StartCoroutine(CoolDownCounter(ItemObj[i].time));
+                        }
+                    }
                 }
-                StartCoroutine(CoolDownCounter(IntercatingObject.GetComponent<DragSystem>().Cooldown));
             }
         }
     }
@@ -52,10 +62,10 @@ public class GridToBanch : MonoBehaviour
 
     public void Update()
     {
-        if(TimeTillFinish > 0)
+        if(time > 0)
         {
-            TimeTillFinish -= Time.deltaTime;
-            float x = Mathf.Round(TimeTillFinish * 10f) / 10f;
+            time -= Time.deltaTime;
+            float x = Mathf.Round(time * 10f) / 10f;
             TimerText.text = x.ToString();       
         }
     }
@@ -68,10 +78,12 @@ public class GridToBanch : MonoBehaviour
 
     public virtual void UseBench()
     {
-        TimeTillFinish = 0;
-        Debug.Log(" ist 0");
-        IntercatingObject.transform.position = FinishedBenchPlace.transform.position;
-        IntercatingObject.GetComponent<DragSystem>().Allowed = true;
+        time = 0;
+        for (int j = 0; j < itemAmount; j++)
+        {
+            InteractObject[j].transform.position = FinishedPlace[j].position;
+            InteractObject[j].GetComponent<DragSystem>().Allowed = true;
+        }
         TimerText.text = null;
         isAlreadyworking = false;
     }
