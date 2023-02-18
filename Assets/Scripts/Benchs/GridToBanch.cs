@@ -9,7 +9,7 @@ public class GridToBanch : MonoBehaviour
 
     [SerializeField]
     private List<EatObject> ItemObj;
-    public List<Transform> StorePlace, FinishedPlace;
+    public List<GameObject> StorePlace, FinishedPlace;
     public List<GameObject> InteractObject;
 
     public float time, workingTime;
@@ -18,12 +18,12 @@ public class GridToBanch : MonoBehaviour
 
     #if UNITY_EDITOR
 
-    private void OnGUI()
+    /*private void OnGUI()
     {
         InteractObject = new List<GameObject>(itemAmount);
-        StorePlace = new List<Transform>(itemAmount);
-        FinishedPlace = new List<Transform>(itemAmount);
-    }
+        StorePlace = new List<Vector3>(itemAmount);
+        FinishedPlace = new List<Vector3>(itemAmount);
+    }*/
     #endif
 
     void Start()
@@ -41,17 +41,17 @@ public class GridToBanch : MonoBehaviour
             {
                 for (int j = 0; j < itemAmount; j++)
                 {
-                    if (isAlreadyworking == false && ItemObj[i])
+                    if (isAlreadyworking == false && ItemObj[i] && !InteractObject.Contains(other.gameObject) && !InteractObject[j])
                     {
                         //z.b. Dann Teller Waschen
                         other.gameObject.GetComponent<DragSystem>().Allowed = false;
-                        other.transform.position = StorePlace[j].position;
+                        other.transform.localPosition = StorePlace[j].transform.position;
                         InteractObject[j] = other.gameObject;
                         if (InteractObject[itemAmount - 1])
                         {
                             time = workingTime;
                             isAlreadyworking = true;
-                            StartCoroutine(CoolDownCounter(ItemObj[i].time));
+                            StartCoroutine(CoolDownCounter(workingTime));
                         }
                     }
                 }
@@ -81,8 +81,12 @@ public class GridToBanch : MonoBehaviour
         time = 0;
         for (int j = 0; j < itemAmount; j++)
         {
-            InteractObject[j].transform.position = FinishedPlace[j].position;
-            InteractObject[j].GetComponent<DragSystem>().Allowed = true;
+            GameObject _g = Instantiate(InteractObject[j].GetComponent<DragSystem>().eatObject.nextobj.obj);
+            _g.name = _g.GetComponent<DragSystem>().eatObject.nickname;
+            _g.transform.localPosition = FinishedPlace[j].transform.position;
+            _g.GetComponent<DragSystem>().Allowed = true;
+            Destroy(InteractObject[j]);
+            InteractObject[j] = null;
         }
         TimerText.text = null;
         isAlreadyworking = false;

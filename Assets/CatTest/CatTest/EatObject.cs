@@ -7,7 +7,7 @@ public class EatObject : ScriptableObject
 {
     public string nickname;
     public GameObject obj;
+    public EatObject nextobj;
     public float deltime;
-    public float time; //timetofinish
     public float eattime;
 }

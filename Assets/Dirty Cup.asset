@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84cb4b0735c6b6c479d8f224ea29d036, type: 3}
+  m_Name: Dirty Cup
+  m_EditorClassIdentifier: 
+  nickname: Dirty Cup
+  obj: {fileID: 4242982991980025142, guid: 71b49a735eaedbe4f91fe3af248c7129, type: 3}
+  nextobj: {fileID: 11400000, guid: a695188ee29571344ac9332233206b2d, type: 2}
+  deltime: 0
+  eattime: 0

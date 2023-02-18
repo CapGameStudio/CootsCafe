@@ -1332,8 +1332,8 @@ Transform:
   - {fileID: 412558310}
   - {fileID: 1366087058}
   - {fileID: 349155699}
-  - {fileID: 1175816716}
   - {fileID: 1527206385}
+  - {fileID: 758389290}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1362,14 +1362,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 439e4b0ffad12fb468741090b683a0f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bench: {fileID: 412558309}
-  FinishedBenchPlace: {fileID: 1175816715}
-  InteractibleObj:
-  - Tasse
-  TimeTillFinish: 0
-  IntercatingObject: {fileID: 0}
-  TimerText: {fileID: 1030632837}
+  itemAmount: 1
+  ItemObj:
+  - {fileID: 11400000, guid: a695188ee29571344ac9332233206b2d, type: 2}
+  StorePlace:
+  - {fileID: 412558309}
+  FinishedPlace:
+  - {fileID: 758389289}
+  InteractObject:
+  - {fileID: 0}
+  time: 0
+  workingTime: 5
   isAlreadyworking: 0
+  TimerText: {fileID: 1030632837}
 --- !u!1 &587903970
 GameObject:
   m_ObjectHideFlags: 0
@@ -1793,6 +1798,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &758389289
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 758389290}
+  m_Layer: 0
+  m_Name: FinishPlace
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &758389290
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758389289}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.293, y: 0.473, z: -0.208}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 571059228}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &761288207
 GameObject:
   m_ObjectHideFlags: 0
@@ -2376,16 +2412,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78159ac5828f3ae47819a2e17b6b10fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bench: {fileID: 1538449147}
-  FinishedBenchPlace: {fileID: 10367649}
-  InteractibleObj:
-  - Chicken
-  - Meat
-  TimeTillFinish: 0
-  IntercatingObject: {fileID: 0}
-  TimerText: {fileID: 321457107}
+  itemAmount: 1
+  ItemObj: []
+  StorePlace: []
+  FinishedPlace: []
+  InteractObject: []
+  time: 0
+  workingTime: 0
   isAlreadyworking: 0
-  BackedColor: {fileID: 2100000, guid: 0cac0362739195a44b1f407531d8cd56, type: 2}
+  TimerText: {fileID: 321457107}
 --- !u!65 &1102634752
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2651,37 +2686,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 076879464bd682945aa7cd31ae139a36, type: 3}
---- !u!1 &1175816715
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1175816716}
-  m_Layer: 0
-  m_Name: FinishedPlace
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1175816716
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1175816715}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.333, y: 0.477, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 571059228}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1273086186
 GameObject:
   m_ObjectHideFlags: 0
@@ -2795,16 +2799,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44ff00543f32d4f499966e0ea25266f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bench: {fileID: 2102967752}
-  FinishedBenchPlace: {fileID: 0}
-  InteractibleObj:
-  - Chicken
-  - Meat
-  - Cake
-  TimeTillFinish: 0
-  IntercatingObject: {fileID: 0}
-  TimerText: {fileID: 0}
+  itemAmount: 1
+  ItemObj: []
+  StorePlace: []
+  FinishedPlace: []
+  InteractObject: []
+  time: 0
+  workingTime: 0
   isAlreadyworking: 0
+  TimerText: {fileID: 0}
 --- !u!65 &1273086192
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3465,15 +3468,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3c07bbdec3b44a46bd0c23394bb8e1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bench: {fileID: 422475373}
-  FinishedBenchPlace: {fileID: 2009359881}
-  InteractibleObj:
-  - Cake
-  TimeTillFinish: 0
-  IntercatingObject: {fileID: 0}
-  TimerText: {fileID: 1808841367}
+  itemAmount: 1
+  ItemObj: []
+  StorePlace: []
+  FinishedPlace: []
+  InteractObject: []
+  time: 0
+  workingTime: 0
   isAlreadyworking: 0
-  BackedColor: {fileID: 2100000, guid: b2e8a54aab4e55a42ae899d7635521a3, type: 2}
+  TimerText: {fileID: 1808841367}
 --- !u!65 &1518495246
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3517,7 +3520,7 @@ Transform:
   m_Children:
   - {fileID: 1103734483}
   m_Father: {fileID: 571059228}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1538449147
 GameObject:
@@ -4230,16 +4233,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78159ac5828f3ae47819a2e17b6b10fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bench: {fileID: 515661362}
-  FinishedBenchPlace: {fileID: 996595657}
-  InteractibleObj:
-  - Chicken
-  - Meat
-  TimeTillFinish: 0
-  IntercatingObject: {fileID: 0}
-  TimerText: {fileID: 677857948}
+  itemAmount: 1
+  ItemObj:
+  - {fileID: 0}
+  StorePlace:
+  - {fileID: 0}
+  FinishedPlace:
+  - {fileID: 0}
+  InteractObject:
+  - {fileID: 0}
+  time: 0
+  workingTime: 0
   isAlreadyworking: 0
-  BackedColor: {fileID: 2100000, guid: 0cac0362739195a44b1f407531d8cd56, type: 2}
+  TimerText: {fileID: 677857948}
 --- !u!1 &2009359881
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,7 +21,8 @@ public class DragSystem : MonoBehaviour
 
     private void Start()
     {
-        DecayTime.text = " ";
+        if(DecayTime)
+            DecayTime.text = " ";
         time = eatObject.deltime;
     }
 
@@ -30,17 +31,15 @@ public class DragSystem : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit, 1000))
         {
-                if(hit.transform.name != eatObject.nickname && Allowed)
-                {
-                    if (inFrezzer)
-                    {
-                        inFrezzer = false;
-                    }
-                    Debug.Log(hit.transform.position + " Name: " + hit.transform.name);
-                    Vector3 curScreenPoint = new Vector3(hit.point.x, hit.point.y + 0.05f, hit.point.z);
+            if(hit.transform.name != eatObject.nickname && Allowed)
+            {
+                if (inFrezzer)
+                    inFrezzer = false;
+                Debug.Log(hit.transform.position + " Name: " + hit.transform.name);
+                Vector3 curScreenPoint = new Vector3(hit.point.x, hit.point.y + 0.05f, hit.point.z);
 
-                    transform.position = curScreenPoint;
-                }
+                transform.position = curScreenPoint;
+            }
         }
 
     }
