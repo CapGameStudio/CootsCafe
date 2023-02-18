@@ -36,7 +36,7 @@ public class DragSystem : MonoBehaviour
                 if (inFrezzer)
                     inFrezzer = false;
                 Debug.Log(hit.transform.position + " Name: " + hit.transform.name);
-                Vector3 curScreenPoint = new Vector3(hit.point.x, hit.point.y + 0.05f, hit.point.z);
+                Vector3 curScreenPoint = new Vector3(hit.point.x, hit.point.y, hit.point.z);
 
                 transform.position = curScreenPoint;
             }

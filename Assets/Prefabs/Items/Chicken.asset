@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84cb4b0735c6b6c479d8f224ea29d036, type: 3}
   m_Name: Chicken
   m_EditorClassIdentifier: 
-  nickname: 
-  obj: {fileID: 0}
+  nickname: Chicken
+  obj: {fileID: 29328406226203130, guid: ee99bc95d034a5946aa3e4de46a1a816, type: 3}
+  nextobj: {fileID: 11400000, guid: 2d03ce92cf08f8d4599c5f325f1fde70, type: 2}
   deltime: 0
-  time: 0
   eattime: 0

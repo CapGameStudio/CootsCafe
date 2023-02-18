@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 84cb4b0735c6b6c479d8f224ea29d036, type: 3}
-  m_Name: Meat
+  m_Name: ChickenCooked
   m_EditorClassIdentifier: 
-  nickname: Meat
-  obj: {fileID: 8451713060348100392, guid: c1e5e5cc91f183a4585de6867b2a625d, type: 3}
-  nextobj: {fileID: 11400000, guid: c72b413bd7c8abe4c92255c34b9779fe, type: 2}
+  nickname: ChickenCoocked
+  obj: {fileID: 29328406226203130, guid: ef9c88769a15360478fca006719c135c, type: 3}
+  nextobj: {fileID: 0}
   deltime: 0
   eattime: 0
